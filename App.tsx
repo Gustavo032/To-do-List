@@ -3,6 +3,7 @@ import { StyleSheet, Image, View, Text, TouchableOpacity, TextInput } from 'reac
 import { Header } from './src/components/Header/';
 import { useState } from "react";
 import { InputAddItem } from './src/components/InputAddItem';
+import { Divider } from './src/components/Divider';
 
 export default function App() {
 	return (
@@ -11,18 +12,8 @@ export default function App() {
 
 		<InputAddItem/>
 		<View style={styles.contentContainer}>
-			<View style={styles.divider}>
-				<View style={styles.dividerText}>
-					<View style={{flexDirection: 'row', }}>
-						<Text style={{color:"#4EA8DE"}}>Criadas</Text>
-						<Text> Icon</Text>
-					</View>
-
-					<View style={{flexDirection: 'row', }}>
-						<Text style={{color:"#8284FA"}}>Concluídas</Text>
-					</View>
-				</View>
-			</View>
+			<Divider/>
+			
 		</View>
 	</View>
   );
@@ -37,23 +28,5 @@ const styles = StyleSheet.create({
 	},
 	contentContainer:{
 		flex: 1,
-	},
-	divider: {
-		flex: 1,
-		flexDirection: 'row',
-		justifyContent: 'space-between',
-		paddingHorizontal: 20,
-	},
-	dividerText: {
-		flexDirection: 'row',
-		justifyContent: 'space-between',
-		width: '100%',
-		paddingBottom: 20,
-		borderBottomColor: "#333333",
-		borderBottomWidth: 1,
-		alignSelf: 'flex-start'
-	},
-	lastDividerText:{
-		alignSelf: 'flex-end'
-	}
+	},	
 });
