@@ -2,18 +2,13 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
 	divider: {
-		flex: 1,
 		flexDirection: 'row',
-		justifyContent: 'space-between',
-		paddingHorizontal: 20,
+		justifyContent: 'flex-start',
 	},
 	dividerText: {
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		width: '100%',
-		paddingBottom: 20,
-		borderBottomColor: "#333333",
-		borderBottomWidth: 1,
 		alignSelf: 'flex-start'
 	},
 	dividerTextContent: {

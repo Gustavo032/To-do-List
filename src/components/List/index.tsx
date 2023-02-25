@@ -1,24 +1,40 @@
-import { FlatList } from "react-native";
+import { FlatList, Image, Text, View } from "react-native";
+import { ItemCard } from "../../components/ItemCard";
 import { styles } from "./styles";
 
-export function List(){
+export function List(props:any){
+	
 	return(
-		<FlatList 
-			data={participants}
-			keyExtractor={item => item}	
-			renderItem={({item})=>(
-				<Participant 
-					key={item}
-					name={item} 
-					onRemove={()=>{handleParticipantRemove(item)}}
-				/>
-			)}
-			showsVerticalScrollIndicator={false}
-			ListEmptyComponent={()=>(
-				<Text style={styles.listEmptyText}>
-					Ninguém chegou no evento ainda? Adicione participantes a sua lista de presença.
-				</Text>
-			)}
-		/>
+
+			<FlatList 
+				style={styles.list}
+				data={props.toDoItems}
+				keyExtractor={item => item}	
+				renderItem={({item})=>(
+					<ItemCard
+						key={item}
+						name={item} 
+						onRemove={()=>{props.handleItemCardRemoved(item)}}
+						onFinish={()=>{props.handleTaskFinish(item)}}
+						finishedToDoItems={props.finishedToDoItems}
+					/>
+				)}
+				showsVerticalScrollIndicator={false}
+				ListEmptyComponent={()=>(
+					<View style={ styles.listEmpty }>
+						<Image style={ styles.listEmptyIcon } source={require('../../../public/Clipboard.png')}/>
+
+						<View style={ styles.listEmptyTexts }>
+							<Text style={ styles.listEmptyTextBold }>
+								Você ainda não tem tarefas cadastradas
+							</Text>
+							<Text style={ styles.listEmptyText }>
+								Crie tarefas e organize seus itens a fazer
+							</Text>
+						</View>
+					</View>
+				)}
+			/>
+
 	);
 }

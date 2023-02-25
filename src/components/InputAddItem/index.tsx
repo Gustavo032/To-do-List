@@ -1,12 +1,16 @@
-import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Alert, Image, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { styles } from "./styles";
 import { useState } from 'react'
 
-export function InputAddItem(){
-	const [ inputItem, setInputItem ] = useState('')
+export function InputAddItem(props:any){
+	const [ inputItemValue, setInputItemValue ] = useState('')
 	
 	function handleItemAdd(){
-
+		if(props.toDoItems.includes(inputItemValue)){
+			return Alert.alert(`" ${inputItemValue} " já existe, cadastre uma variação desta tarefa`)
+		}
+		props.setToDoItems((prevState:any)=>[...prevState, inputItemValue])
+		setInputItemValue('')
 	}
 
 	return (
@@ -16,11 +20,11 @@ export function InputAddItem(){
 				placeholder="Adicione uma nova tarefa"
 				placeholderTextColor="#484848"
 				keyboardType="default"		
-				onChangeText={text => setInputItem(text)}	 
-				value={inputItem} 
+				onChangeText={text => setInputItemValue(text)}	 
+				value={inputItemValue} 
 			/>	
 
-			<TouchableOpacity style={styles.button} onPress={handleItemAdd}>
+			<TouchableOpacity style={styles.button} onPress={()=>{handleItemAdd()}}>
 				<Image source={require('./plus.png')}/>
 			</TouchableOpacity>	
 		</View>
